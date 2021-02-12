@@ -54,4 +54,11 @@ function addTask(event) {
       </td>`);
     } // end of loop and append
   );
+
+  clearInputs();
+}
+
+function clearInputs() {
+  $('#taskInput').val('');
+  $('#dateInput').val('');
 }

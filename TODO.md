@@ -6,12 +6,10 @@ HTML
 [x]user inputs for a task -[x] due date, task details -[x] add task button
 [x] give inputs ids
 [x] stop form with prevent default
-[x] inputs into an array of objects
--[] inputs ids = variables
--[] variable input values ajax to server
--[] ajax the object
--[]sends data to server to DB
--[]add task appends to DOM
+[x] inputs into an array of objects -[x] inputs ids = variables -[x] variable input values ajax to server -[x] ajax the object
+[]clear inputs
+
+-[]sends data to server to DB -[x]add task appends to DOM
 
 SERVER
 [x]npm init
