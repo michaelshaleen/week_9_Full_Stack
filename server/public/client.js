@@ -23,23 +23,36 @@ function addTask(event) {
     },
   }).then(function (response) {
     console.log('this is response', response);
-    for (item of response) {
-      $('#taskList').append(`
-      <tbody>
-        <td>Task
-        ${newTask.task}
-        </td>
-        <td>Due Date
-        ${newTask.dueDate}
-        </td>
-      </tbody>
-    `);
-    }
+    // for (item of response) {
+    //   $('#taskList').append(`
+    //   <tbody>
+    //     <td>Task
+    //     ${newTask.task}
+    //     </td>
+    //     <td>Due Date
+    //     ${newTask.dueDate}
+    //     </td>
+    //   </tbody>
+    // `);
   });
 
   //an ajax to get from server and append???
 
-  $.ajax;
-
   console.log('newTask', newTask);
+
+  $.ajax({
+    url: '/tasks',
+    method: 'GET',
+  }).then(function (response) {
+    console.log('get response', response);
+    for (item of response) {
+      $('#taskList').append(`
+    <td>task
+    ${item.task},
+    </td>
+    due date
+    ${item.dueDate}
+    </td>`);
+    } // end of loop and append
+  });
 }
