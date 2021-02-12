@@ -5,6 +5,7 @@ HTML
 [x]page title TO DO
 [x]user inputs for a task -[x] due date, task details -[x] add task button
 [x] give inputs ids
+[] stop form with prevent default
 -[] inputs ids = variables
 -[] variable input values ajax to server
 -[] ajax the object

@@ -3,11 +3,14 @@ console.log('client.js sourced');
 $(document).ready(onReady);
 
 function onReady() {
-  $('#addaddTaskBtn').on('click', addTask);
+  console.log('onReady');
+  $('#addTaskBtn').on('click', addTask);
 }
 
-function addTask() {
-  let newTast = {
+function addTask(event) {
+  event.preventDefault();
+  console.log('in addTask'); // test
+  let newTask = {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),
   };
