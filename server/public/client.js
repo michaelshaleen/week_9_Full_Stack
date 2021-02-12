@@ -5,10 +5,18 @@ $(document).ready(onReady);
 function onReady() {
   console.log('onReady');
   $('#addTaskBtn').on('click', addTask);
+  // $(document).on;  did not work
+  // 'click',
+  //   '#deleteBtn',
+  //   function () {
+  //     console.log('function');
+  //     let deleteTarget = $(this).parent();
+  //     deleteTarget.remove();
+  //   };
 }
 
 function addTask(event) {
-  $('#deleteBtn').on('click', deleteTask);
+  $(document).on('click', '#deleteBtn', deleteTask); // doc because is not loaded when page starts
 
   event.preventDefault();
   console.log('in addTask'); // test
@@ -62,4 +70,7 @@ function clearInputs() {
 
 function deleteTask() {
   console.log('deleteTask');
+  let deleteTarget = $(this).parent();
+  deleteTarget.remove();
+  return;
 }

@@ -18,9 +18,14 @@ SERVER
 [x]npm install express
 [x] npm install body-parser
 [x] server require express
+[x] pool.js in modules folder
+[x] pool.js has connection data for DB
 
 DATABASE
 [x] set up postico
 [x] name database weekend-to-do-app
+[x] create table
+[x] create drop table
+[x] create insert
 [] pool to take in database
 []take and store task inputs
