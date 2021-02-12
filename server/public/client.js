@@ -42,10 +42,10 @@ function addTask(event) {
   $.ajax({
     url: '/tasks',
     method: 'GET',
-  }).then(
-    function (response) {
-      console.log('get response', response);
-      $('#taskList').append(`
+  }).then(function (response) {
+    console.log('get response', response);
+    $('#taskList').append(`
+    <tr>
       <td>Task:
       ${response.task}--
       Due Date
@@ -53,13 +53,10 @@ function addTask(event) {
       </td>
       <td>
       <button id="deleteBtn">Delete Button</button>
-      `); // give deletebtn id so function on click will delete
-    } // end of loop and append
-  );
+    </tr>
+      `);
+  });
 
-  function deleteTask() {
-    console.log('deleteTask');
-  }
   clearInputs(); //ran automatically
 }
 
@@ -70,7 +67,9 @@ function clearInputs() {
 
 function deleteTask() {
   console.log('deleteTask');
-  let deleteTarget = $(this).parent();
+  let deleteTarget = $(this).parent().parent();
   deleteTarget.remove();
   return;
 }
+
+//works!
