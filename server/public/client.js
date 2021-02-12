@@ -16,7 +16,7 @@ function addTask(event) {
   };
   //ajax grab and POST object into server
   $.ajax({
-    url: '/jokes',
+    url: '/tasks',
     method: 'POST',
     data: {
       task_to_add: newTask,
@@ -24,17 +24,22 @@ function addTask(event) {
   }).then(function (response) {
     console.log('this is response', response);
     for (item of response) {
-      $('#outputDiv').append(`<li>
-      Joke Artist:
-    ${item.whoseJoke},
-    Joke Set up:
-    ${item.jokeQuestion},
-    Punch Line:
-    ${item.punchLine}
-    </li>
+      $('#taskList').append(`
+      <tbody>
+        <td>Task
+        ${newTask.task}
+        </td>
+        <td>Due Date
+        ${newTask.dueDate}
+        </td>
+      </tbody>
     `);
     }
   });
+
+  //an ajax to get from server and append???
+
+  $.ajax;
 
   console.log('newTask', newTask);
 }

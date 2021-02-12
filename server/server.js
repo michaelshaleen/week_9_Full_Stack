@@ -24,3 +24,9 @@ app.listen(5000, () => {
 // group by movie/ book endpoints
 // app.get/post are endpoints
 // book/movies are nouns
+
+app.post('/tasks', (req, res) => {
+  postedTask = req.body.task_to_add;
+  console.log('postedTask', postedTask);
+  res.sendStatus(201);
+});
