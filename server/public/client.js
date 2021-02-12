@@ -43,16 +43,15 @@ function addTask(event) {
   $.ajax({
     url: '/tasks',
     method: 'GET',
-  }).then(function (response) {
-    console.log('get response', response);
-    for (item of response) {
+  }).then(
+    function (response) {
+      console.log('get response', response);
       $('#taskList').append(`
-    <td>task
-    ${item.task},
-    </td>
-    due date
-    ${item.dueDate}
-    </td>`);
+      <td>Task:
+      ${response.task}--
+      Due Date
+      ${response.dueDate}
+      </td>`);
     } // end of loop and append
-  });
+  );
 }
