@@ -14,4 +14,27 @@ function addTask(event) {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),
   };
+  //ajax grab and POST object into server
+  $.ajax({
+    url: '/jokes',
+    method: 'POST',
+    data: {
+      task_to_add: newTask,
+    },
+  }).then(function (response) {
+    console.log('this is response', response);
+    for (item of response) {
+      $('#outputDiv').append(`<li>
+      Joke Artist:
+    ${item.whoseJoke},
+    Joke Set up:
+    ${item.jokeQuestion},
+    Punch Line:
+    ${item.punchLine}
+    </li>
+    `);
+    }
+  });
+
+  console.log('newTask', newTask);
 }
