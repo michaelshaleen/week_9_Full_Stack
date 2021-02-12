@@ -8,6 +8,8 @@ function onReady() {
 }
 
 function addTask(event) {
+  $('#deleteBtn').on('click', deleteTask);
+
   event.preventDefault();
   console.log('in addTask'); // test
   let newTask = {
@@ -23,17 +25,6 @@ function addTask(event) {
     },
   }).then(function (response) {
     console.log('this is response', response);
-    // for (item of response) {
-    //   $('#taskList').append(`
-    //   <tbody>
-    //     <td>Task
-    //     ${newTask.task}
-    //     </td>
-    //     <td>Due Date
-    //     ${newTask.dueDate}
-    //     </td>
-    //   </tbody>
-    // `);
   });
 
   //an ajax to get from server and append???
@@ -51,14 +42,24 @@ function addTask(event) {
       ${response.task}--
       Due Date
       ${response.dueDate}
-      </td>`);
+      </td>
+      <td>
+      <button id="deleteBtn">Delete Button</button>
+      `); // give deletebtn id so function on click will delete
     } // end of loop and append
   );
 
-  clearInputs();
+  function deleteTask() {
+    console.log('deleteTask');
+  }
+  clearInputs(); //ran automatically
 }
 
 function clearInputs() {
   $('#taskInput').val('');
   $('#dateInput').val('');
+}
+
+function deleteTask() {
+  console.log('deleteTask');
 }

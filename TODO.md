@@ -6,10 +6,12 @@ HTML
 [x]user inputs for a task -[x] due date, task details -[x] add task button
 [x] give inputs ids
 [x] stop form with prevent default
-[x] inputs into an array of objects -[x] inputs ids = variables -[x] variable input values ajax to server -[x] ajax the object
-[]clear inputs
+[x] inputs into an array of objects -[x] inputs ids = variables -[x] variable input values ajax to server -[x] ajax the object -[x]add task appends to DOM
+[x]clear inputs
 
--[]sends data to server to DB -[x]add task appends to DOM
+-[]sends data to server to DB
+[]add delete button
+-[]is appended with input data
 
 SERVER
 [x]npm init
@@ -18,7 +20,7 @@ SERVER
 [x] server require express
 
 DATABASE
-[] set up postico
-[] name database weekend-to-do-app
+[x] set up postico
+[x] name database weekend-to-do-app
 [] pool to take in database
 []take and store task inputs
