@@ -10,9 +10,10 @@ HTML
 [x]clear inputs
 
 -[x]sends data to server
-server sends to DB
--[]add delete button
--[]is appended with input data
+server sends to DB -[x]add delete button -[x]is appended with input data
+
+[] complete button
+-[]shows up when appended inputs
 
 SERVER
 [x]npm init
@@ -22,7 +23,9 @@ SERVER
 [x] pool.js in modules folder
 [x] pool.js has connection data for DB
 [x]set up sql and pg to talk to db
-[]
+
+[]pull something from db to show connection works
+[] ensure db names are correct
 
 DATABASE
 [x] set up postico

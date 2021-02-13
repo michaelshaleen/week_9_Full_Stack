@@ -15,5 +15,5 @@ VALUES
 
 
 
-SELECT * FROM "tasks"
-WHERE "id"=1
+-- SELECT * FROM "tasks"
+-- WHERE "id"=1

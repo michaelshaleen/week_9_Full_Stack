@@ -39,7 +39,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) =>{
+  console.log(req.params, "req.params")
   let taskID = req.params.id;
+  console.log(taskID, "task id")
 
   pool.qeury(`
   SELECT * FROM "tasks"
@@ -47,6 +49,7 @@ router.get('/:id', (req, res) =>{
   [taskID])
   .then((dbRes) => {
     res.send(dbRes.rows[0])
+    console.log(dbRes.row[0])
 
   })
   .catch(error => {

@@ -16,7 +16,8 @@ function onReady() {
 }
 
 function addTask(event) {
-  $(document).on('click', '#deleteBtn', deleteTask); // doc because is not loaded when page starts
+  $(document).on('click', '#deleteBtn', deleteTask);
+  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
 
   event.preventDefault();
   //console.log('in addTask'); // test
@@ -53,6 +54,8 @@ function addTask(event) {
       </td>
       <td>
       <button id="deleteBtn">Delete Button</button>
+      <button id="completeBtn">Completed!</button>
+
     </tr>
       `);
   });
@@ -72,4 +75,10 @@ function deleteTask() {
   return;
 }
 
-//works!
+function completeTask() {
+  console.log('complete task');
+  let completeTarget = $(this).parent().parent();
+  completeTarget.css('background-color', 'green');
+}
+
+$('#monthly').css('background-color', 'red');
