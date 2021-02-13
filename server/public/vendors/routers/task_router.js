@@ -19,6 +19,18 @@ router.get('/', (req, res) => {
   ];
 
 
+
+  pool.query( `SELECT * FROM "tasks"
+  WHERE "id"=$1`;
+  .then( function (dbRes) { //dbres is results of pool.query from db
+    console.log(dbRes.rows)
+  })
+  .catch( function (error) {
+    console.log("error")
+    
+  })
+  )
+
   pool
     .query(queryString, queryArg)
     .then(function (dbRes) {

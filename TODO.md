@@ -1,3 +1,7 @@
+questions:
+[] when, where, why is pool.query used
+[]
+
 - package.json is here but no start dependency
   [x]no
 
@@ -12,8 +16,7 @@ HTML
 -[x]sends data to server
 server sends to DB -[x]add delete button -[x]is appended with input data
 
-[] complete button
--[]shows up when appended inputs
+[x] complete button -[x]shows up when appended inputs -[x]color change
 
 SERVER
 [x]npm init
@@ -24,6 +27,9 @@ SERVER
 [x] pool.js has connection data for DB
 [x]set up sql and pg to talk to db
 
+[] store inputs in db
+[] get to server
+[] server to db
 []pull something from db to show connection works
 [] ensure db names are correct
 

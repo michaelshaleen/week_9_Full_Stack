@@ -73,12 +73,11 @@ function deleteTask() {
   let deleteTarget = $(this).parent().parent();
   deleteTarget.remove();
   return;
-}
+} //needs to coordinate with db
 
 function completeTask() {
   console.log('complete task');
   let completeTarget = $(this).parent().parent();
   completeTarget.css('background-color', 'green');
 }
-
-$('#monthly').css('background-color', 'red');
+//needs to coordinate with db

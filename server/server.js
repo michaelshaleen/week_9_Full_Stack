@@ -36,3 +36,21 @@ app.get('/tasks', (req, res) => {
   console.log(postedTask.task);
   res.send(postedTask);
 });
+
+const pg = require('pg');
+
+const pool = new pg.Pool({
+  database: 'weekend-to-do-app',
+  host: 'localhost',
+  port: 5432,
+});
+
+pool
+  .query('SELECT * FROM "tasks"')
+  .then(function (dbRes) {
+    //dbres is results of pool.query from db
+    console.log(dbRes.rows);
+  })
+  .catch(function (error) {
+    console.log('error');
+  });
