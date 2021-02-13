@@ -17,6 +17,27 @@ function addTask(event) {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),
   };
+  ////////////////////////////
+
+  $.ajax({
+    url: '/tasks/getTasks',
+    method: 'GET',
+  }).then(function (dbRes) {
+    console.log('get response', dbRes.rows);
+    $('#taskList').append(`
+    <tr>
+      <td>Task:
+      ${dbRes.task}--
+      Due Date
+      ${dbRes.dueDate}
+      </td>
+      <td>
+      <button id="deleteBtn">Delete Button</button>
+      <button id="completeBtn">Completed!</button>
+
+    </tr>
+      `);
+  });
   //ajax grab and POST object into server
   $.ajax({
     url: '/tasks',
@@ -32,26 +53,6 @@ function addTask(event) {
 
   console.log('newTask name', newTask.task);
   console.log('newTask dueDate', newTask.dueDate);
-
-  $.ajax({
-    url: '/tasks', //used in server
-    method: 'GET', //used in router file when using pool.query
-  }).then(function (response) {
-    console.log('get response', response);
-    $('#taskList').append(`
-    <tr>
-      <td>Task:
-      ${response.task}--
-      Due Date
-      ${response.dueDate}
-      </td>
-      <td>
-      <button id="deleteBtn">Delete Button</button>
-      <button id="completeBtn">Completed!</button>
-
-    </tr>
-      `);
-  });
 
   clearInputs(); //ran automatically
 }
