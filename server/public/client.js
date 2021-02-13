@@ -19,7 +19,7 @@ function addTask(event) {
   $(document).on('click', '#deleteBtn', deleteTask); // doc because is not loaded when page starts
 
   event.preventDefault();
-  console.log('in addTask'); // test
+  //console.log('in addTask'); // test
   let newTask = {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),

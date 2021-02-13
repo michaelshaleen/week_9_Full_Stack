@@ -20,6 +20,7 @@ SERVER
 [x] server require express
 [x] pool.js in modules folder
 [x] pool.js has connection data for DB
+[]set up sql and pg to talk to db
 
 DATABASE
 [x] set up postico
