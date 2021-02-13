@@ -1,8 +1,8 @@
 const express = require('express'); // without ./ assumes it is a library we installed
 //console.log('express', express);
-const routerTask = require('./routers/task_router.js');
+const taskRouter = require('./routers/task_router');
 const bodyParser = require('body-parser');
-
+//pool = require('../modules/pool');
 const app = express(); // app is an object with many functions within
 const PORT = process.env.PORT || 5000;
 
@@ -30,13 +30,13 @@ let postedTask = [];
 app.post('/tasks', (req, res) => {
   postedTask = req.body.task_to_add;
   console.log('postedTask', postedTask);
-  console.log(routerTask, 'router task');
+  //console.log(routerTask, 'router task');
   res.sendStatus(201);
 });
 
 app.get('/tasks', (req, res) => {
-  console.log(postedTask.task);
+  console.log('in app.get', postedTask.task, postedTask.dueDate);
   res.send(postedTask);
 });
 
-app.use(routerTask);
+app.use(taskRouter);

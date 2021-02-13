@@ -30,7 +30,8 @@ function addTask(event) {
 
   //an ajax to get from server and append???
 
-  console.log('newTask', newTask);
+  console.log('newTask name', newTask.task);
+  console.log('newTask dueDate', newTask.dueDate);
 
   $.ajax({
     url: '/tasks',
