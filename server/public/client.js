@@ -12,17 +12,17 @@ function getTasks() {
   console.log('In getTasks');
 
   $.ajax({
+    type: 'GET',
     url: '/tasks/getTasks',
-    method: 'GET',
   }).then(function (response) {
     console.log('get response', response);
     for (let i = 0; i < response.length; i++) {
       $('#taskList').append(`
     <tr>
       <td>Task:
-      ${dbRes.task}--
+      ${newTask.task}--
       Due Date
-      ${dbRes.dueDate}
+      ${newTask.dueDate}
       </td>
       <td>
       <button id="deleteBtn">Delete Button</button>
@@ -35,6 +35,7 @@ function getTasks() {
 }
 ////////////////////////////
 function addTask(event) {
+  console.log('in addTasks');
   $(document).on('click', '#deleteBtn', deleteTask);
   $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
 
@@ -44,6 +45,10 @@ function addTask(event) {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),
   };
+
+  console.log('newTask name', newTask.task);
+  console.log('newTask dueDate', newTask.dueDate);
+
   $.ajax({
     url: '/tasks',
     method: 'POST',
@@ -52,14 +57,26 @@ function addTask(event) {
     },
   }).then(function (response) {
     console.log('this is response', response);
+    for (let i = 0; i < response.length; i++) {
+      $('#taskList').append(`
+    <tr>Ajax Post
+      <td>Task:
+      ${newTask.task}--
+      Due Date
+      ${newTask.dueDate}
+      </td>
+      <td>
+      <button id="deleteBtn">Delete Button</button>
+      <button id="completeBtn">Completed!</button>
+
+    </tr>
+      `);
+    }
+
+    //an ajax to get from server and append???
+
+    clearInputs(); //ran automatically
   });
-
-  //an ajax to get from server and append???
-
-  console.log('newTask name', newTask.task);
-  console.log('newTask dueDate', newTask.dueDate);
-
-  clearInputs(); //ran automatically
 }
 
 function clearInputs() {
