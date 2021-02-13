@@ -34,8 +34,8 @@ function addTask(event) {
   console.log('newTask dueDate', newTask.dueDate);
 
   $.ajax({
-    url: '/tasks',
-    method: 'GET',
+    url: '/tasks', //used in server
+    method: 'GET', //used in router file when using pool.query
   }).then(function (response) {
     console.log('get response', response);
     $('#taskList').append(`

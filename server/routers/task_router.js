@@ -11,15 +11,29 @@ const pg = require('pg');
 
 router.get('/', (req, res) => {
   pool
-    .query('SELECT * FROM "tasks"')
+    .query(`SELECT * FROM "tasks"`)
     .then(function (dbRes) {
+      res.send(dbRes);
       //dbres is results of pool.query from db
       console.log('dbRes.rows', dbRes.rows);
+      res.sendStatus(200);
     })
     .catch(function (error) {
       console.log('error');
+      res.sendStatus(404);
     });
-  res.send(newTask);
 });
+
+router.post('/', (req, res) => {
+  pool.query(`
+  INSERT INTO "tasks"("name", "due_date")
+  VALUES 
+    ('$1', '$2'),
+    ('$1', '$2');
+  `);
+  console.log('router.post');
+  res.send('router.post');
+});
+// put new inputs into db
 
 module.exports = router;
