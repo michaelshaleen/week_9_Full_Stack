@@ -1,5 +1,6 @@
 const express = require('express'); // without ./ assumes it is a library we installed
 //console.log('express', express);
+const routerTask = require('./routers/task_router.js');
 const bodyParser = require('body-parser');
 
 const app = express(); // app is an object with many functions within
@@ -29,6 +30,7 @@ let postedTask = [];
 app.post('/tasks', (req, res) => {
   postedTask = req.body.task_to_add;
   console.log('postedTask', postedTask);
+  console.log(routerTask, 'router task');
   res.sendStatus(201);
 });
 
@@ -37,20 +39,4 @@ app.get('/tasks', (req, res) => {
   res.send(postedTask);
 });
 
-const pg = require('pg');
-
-const pool = new pg.Pool({
-  database: 'weekend-to-do-app',
-  host: 'localhost',
-  port: 5432,
-});
-
-pool
-  .query('SELECT * FROM "tasks"')
-  .then(function (dbRes) {
-    //dbres is results of pool.query from db
-    console.log(dbRes.rows);
-  })
-  .catch(function (error) {
-    console.log('error');
-  });
+app.use(routerTask);

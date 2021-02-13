@@ -5,14 +5,6 @@ $(document).ready(onReady);
 function onReady() {
   console.log('onReady');
   $('#addTaskBtn').on('click', addTask);
-  // $(document).on;  did not work
-  // 'click',
-  //   '#deleteBtn',
-  //   function () {
-  //     console.log('function');
-  //     let deleteTarget = $(this).parent();
-  //     deleteTarget.remove();
-  //   };
 }
 
 function addTask(event) {
