@@ -9,8 +9,9 @@ HTML
 [x] inputs into an array of objects -[x] inputs ids = variables -[x] variable input values ajax to server -[x] ajax the object -[x]add task appends to DOM
 [x]clear inputs
 
--[]sends data to server to DB
-[]add delete button
+-[x]sends data to server
+server sends to DB
+-[]add delete button
 -[]is appended with input data
 
 SERVER
@@ -20,7 +21,8 @@ SERVER
 [x] server require express
 [x] pool.js in modules folder
 [x] pool.js has connection data for DB
-[]set up sql and pg to talk to db
+[x]set up sql and pg to talk to db
+[]
 
 DATABASE
 [x] set up postico
@@ -28,5 +30,5 @@ DATABASE
 [x] create table
 [x] create drop table
 [x] create insert
-[] pool to take in database
+[x] pool to take in database
 []take and store task inputs

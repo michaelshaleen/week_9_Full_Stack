@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
   pool
     .query(queryString, queryArg)
     .then(function (dbRes) {
-      console.log("dbres" dbRes)
+      console.log("dbres", dbRes)
       res.send(dbRes.rows);
     })
     .catch(function (error) {
@@ -46,6 +46,7 @@ router.get('/:id', (req, res) =>{
   WHERE "id" = $1`
   [taskID])
   .then((dbRes) => {
+    res.send(dbRes.rows[0])
 
   })
   .catch(error => {
