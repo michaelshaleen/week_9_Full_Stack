@@ -5,26 +5,19 @@ $(document).ready(onReady);
 function onReady() {
   console.log('onReady');
   $('#addTaskBtn').on('click', addTask);
+  $('#addTaskBtn').on('click', getTasks);
 }
 
-function addTask(event) {
-  $(document).on('click', '#deleteBtn', deleteTask);
-  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
-
-  event.preventDefault();
-  //console.log('in addTask'); // test
-  let newTask = {
-    task: $('#taskInput').val(),
-    dueDate: $('#dateInput').val(),
-  };
-  ////////////////////////////
+function getTasks() {
+  console.log('In getTasks');
 
   $.ajax({
     url: '/tasks/getTasks',
     method: 'GET',
-  }).then(function (dbRes) {
-    console.log('get response', dbRes.rows);
-    $('#taskList').append(`
+  }).then(function (response) {
+    console.log('get response', response);
+    for (let i = 0; i < response.length; i++) {
+      $('#taskList').append(`
     <tr>
       <td>Task:
       ${dbRes.task}--
@@ -37,8 +30,20 @@ function addTask(event) {
 
     </tr>
       `);
+    }
   });
-  //ajax grab and POST object into server
+}
+////////////////////////////
+function addTask(event) {
+  $(document).on('click', '#deleteBtn', deleteTask);
+  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
+
+  event.preventDefault();
+  //console.log('in addTask'); // test
+  let newTask = {
+    task: $('#taskInput').val(),
+    dueDate: $('#dateInput').val(),
+  };
   $.ajax({
     url: '/tasks',
     method: 'POST',
