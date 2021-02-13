@@ -27,6 +27,8 @@ SERVER
 [x] pool.js has connection data for DB
 [x]set up sql and pg to talk to db
 
+[] we can console.log our db now GET dbrows to client and append
+
 [] store inputs in db
 [] get to server
 [] server to db
