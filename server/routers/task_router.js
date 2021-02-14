@@ -58,8 +58,8 @@ router.post('/', function (req, res) {
 
 router.delete('/tasks/:id', (req, res) => {
   console.log('router.delete', req.params.id); // object object,,,WHERE "id"=$1;
-  //let reqId = req.params.id;
-  //console.log('delete request id q', reqId.task_to_add.id);
+  let reqId = req.params.id;
+  console.log('delete request id', reqId.id);
   let sqlText = `DELETE FROM "tasks" `;
 
   pool
