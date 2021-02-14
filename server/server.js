@@ -21,4 +21,4 @@ app.listen(5000, function () {
 //   .catch(function (error) {
 //     console.log(error);
 //   });
-app.use('/', taskRouter);
+app.use('/tasks', taskRouter);

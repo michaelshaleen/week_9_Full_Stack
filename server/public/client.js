@@ -8,31 +8,6 @@ function onReady() {
   $('#addTaskBtn').on('click', getTasks);
 }
 
-function getTasks() {
-  console.log('In getTasks');
-
-  $.ajax({
-    type: 'GET',
-    url: '/tasks',
-  }).then(function (response) {
-    console.log('get response', response);
-    for (let i = 0; i < response.length; i++) {
-      $('#taskList').append(`
-    <tr>
-      <td>Task:
-      ${newTask.task}--
-      Due Date
-      ${newTask.dueDate}
-      </td>
-      <td>
-      <button id="deleteBtn">Delete Button</button>
-      <button id="completeBtn">Completed!</button>
-
-    </tr>
-      `);
-    }
-  });
-}
 ////////////////////////////
 function addTask(event) {
   console.log('in addTasks');
@@ -55,9 +30,9 @@ function addTask(event) {
     data: {
       task_to_add: newTask,
     },
-  }).then(function (response) {
-    console.log('this is response', response);
-    for (let i = 0; i < response.length; i++) {
+  }).then(
+    function (response) {
+      console.log('ajax post response', response);
       $('#taskList').append(`
     <tr>Ajax Post
       <td>Task:
@@ -74,11 +49,35 @@ function addTask(event) {
     }
 
     //an ajax to get from server and append???
-
-    clearInputs(); //ran automatically
-  });
+    //ran automatically
+  );
 }
 
+function getTasks() {
+  console.log('In getTasks');
+
+  $.ajax({
+    type: 'GET',
+    url: '/tasks',
+  }).then(function (dbRes) {
+    console.log('get response', dbRes);
+    for (let i = 0; i < dbRes.length; i++) {
+      $('#taskList').append(`
+    <tr>
+      <td>Task get:
+      ${dbRes[i].name}--
+      Due Date get
+      ${dbRes[i].dueDate}
+      </td>
+      <td>
+      <button id="deleteBtn">Delete Button</button>
+      <button id="completeBtn">Completed!</button>
+
+    </tr>
+      `);
+    }
+  });
+}
 function clearInputs() {
   $('#taskInput').val('');
   $('#dateInput').val('');

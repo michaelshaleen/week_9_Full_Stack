@@ -8,12 +8,8 @@ const pool = new pg.Pool({
   port: 5432,
 });
 
-///
-///
-///
-///
-///
-///
+//////////////////
+
 const tasksList = [];
 router.get('/', (req, res) => {
   pool
@@ -27,7 +23,11 @@ router.get('/', (req, res) => {
       console.log(error);
     });
 });
-
-router.post();
-
+/////////////////////////////////////
+router.post('/', function (req, res) {
+  console.log('app.post');
+  console.log('req.body', req.body);
+  res.send(req.body);
+  res.sendStatus(200);
+});
 module.exports = router;
