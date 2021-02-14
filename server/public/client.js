@@ -75,8 +75,14 @@ function deleteTask() {
   console.log('deleteTask');
   let deleteTarget = $(this).parent().parent();
   deleteTarget.remove();
+  $.ajax({
+    type: 'DELETE',
+    url: '/tasks',
+  });
+
   return;
 } //needs to coordinate with db
+// ajax?
 
 function completeTask() {
   console.log('complete task');

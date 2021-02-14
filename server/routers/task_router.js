@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 //////////////////
-
+//we want to select most recent and append
 const tasksList = [];
 router.get('/', (req, res) => {
   pool
