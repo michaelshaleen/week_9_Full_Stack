@@ -30,4 +30,4 @@ router.get('/', (req, res) => {
 
 router.post();
 
-module.exports;
+module.exports = router;
