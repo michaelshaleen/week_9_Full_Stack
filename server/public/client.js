@@ -32,7 +32,7 @@ function addTask(event) {
       task_to_add: newTask,
     },
   })
-    .then(getTasks())
+    .then(console.log('ajax post'))
     .catch(function (error) {
       console.log(error);
     });
@@ -77,13 +77,15 @@ function clearInputs() {
 //   deleteSong($(this).data('id'));
 //   //call AJAX to DELETE song:
 // }
-function deleteTask(taskID) {
+
+let deleteTarget = [];
+function deleteTask(deleteTarget) {
   console.log('deleteTask');
-  // let deleteTarget = $(this).parent().parent();
-  //deleteTarget.remove();
+  deleteTarget = $(this).parent().parent();
+  deleteTarget.remove();
   $.ajax({
+    url: `/DELETE/tasks/${deleteTarget}`,
     type: 'DELETE',
-    url: `/DELETE/tasks/${taskID}`,
   })
     .then(function (response) {
       addTask();
@@ -94,7 +96,6 @@ function deleteTask(taskID) {
 
   return;
 } //needs to coordinate with db
-// ajax?
 
 function completeTask(taskID) {
   $.ajax({
