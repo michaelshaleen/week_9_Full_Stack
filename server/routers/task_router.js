@@ -85,15 +85,14 @@ router.put('/complete/:id', (req, res) => {
   let completedID = req.params.id;
   console.log('completedID', completedID);
 
-  let truth = req.body.complete;
   let sqlUpdate = '';
 
-  if (complete === 'true') {
-    sqlUpdate = `UPDATE "tasks" SET "complete" = true WHERE "id" = $1`;
-  } else if (complete === 'false') {
+  if (complete === 'TRUE') {
+    sqlUpdate = `UPDATE "tasks" SET "complete" = TRUE WHERE "id" = $1`;
+  } else if (complete === 'FALSE') {
     sqlUpdate = `UPDATE "tasks" SET "complete" = false WHERE "id" = $1`;
   } else {
-    res.sendStatus();
+    res.sendStatus(200);
   }
 
   pool
