@@ -28,15 +28,32 @@ router.get('/', (req, res) => {
 /////////////////////////////////////
 router.post('/', function (req, res) {
   console.log('req.body', req.body);
-  pool.query(`
-  INSERT INTO "tasks"("name", "due_date")
-  VALUES 
-    ('${req.body.task}', '${req.body.dueDate}'),
-    ('Dishes', '01-01-2022');
-  `);
+  let queryString = `
+        INSERT INTO "songs"
+            ("name", "due_date")
+        VALUES
+            -- Use placeholder to prevent SQL Injection!
+            ($1, $2);
+    `;
+
+  let queryArgs = [
+    req.body.task, // $1
+    req.body.dueDate, // $2
+  ];
+
+  console.log('query sting', queryString);
+  console.log('query args', queryArgs);
+
+  pool.query(queryString, queryArgs);
   console.log('app.post');
-  console.log('req.body', req.body);
-  res.send(req.body);
-  res.sendStatus(200);
+  console
+    .log('req.body', req.body)
+    .then(function (dbRes) {
+      res.send(req.body);
+      res.sendStatus(200);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });
 module.exports = router;
