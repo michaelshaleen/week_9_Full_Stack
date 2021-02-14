@@ -40,7 +40,7 @@ function addTask(event) {
 ///////////////////////////////////////
 ///////////////////////////////////////
 function getTasks() {
-  console.log('In getTasks');
+  //console.log('In getTasks');
 
   $.ajax({
     type: 'GET',
@@ -87,7 +87,9 @@ function deleteTask() {
     type: 'DELETE',
   })
     .then(function (response) {
-      console.log('ajax delete');
+      $('#taskList').empty();
+      addTask();
+      getTasks();
       //run function to re-append
     })
     .catch(function (error) {
@@ -97,13 +99,24 @@ function deleteTask() {
   return;
 } //needs to coordinate with db
 
-function completeTask(taskID) {
+let completeTarget = [];
+function completeTask() {
+  completeTarget = $(this).data('id');
+  console.log(completeTarget, 'complete Target');
   $.ajax({
     method: 'PUT',
-    url: `/complete/${taskID}`,
-  });
-  console.log('complete task');
-  let completeTarget = $(this).parent().parent();
-  completeTarget.css('background-color', 'green');
+    url: `/complete/complete${completeTarget}`,
+  })
+    .then(function (response) {
+      $('#taskList').empty();
+      addTask();
+      getTasks();
+      completeTarget.css('background-color', 'green');
+      console.log('ajax put complete');
+    })
+    .catch(function (error) {
+      console.log('error in complete client');
+    });
+  //let completeTarget = $(this).parent().parent();
 }
 //needs to coordinate with db

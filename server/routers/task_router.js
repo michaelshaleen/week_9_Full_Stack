@@ -44,6 +44,7 @@ router.post('/', function (req, res) {
   pool
     .query(queryString, queryArgs)
     .then(function (dbRes) {
+      completeTarget;
       res.send(201);
     })
     .catch(function (error) {
@@ -79,17 +80,20 @@ router.delete('/tasks/:id', (req, res) => {
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-router.put('/:id', (req, res) => {
-  console.log('req', req.body.id.task);
+router.put('/complete/:id', (req, res) => {
   let completedID = req.params.id;
-  console.log('completedID', completedID.task, completedID.due_date);
+  console.log('completedID', completedID);
+
+  let reqId = req.params.id;
+  console.log('delete request id', reqId);
+
   let sqlUpdate = `
   UPDATE "tasks"
   SET "complete" = TRUE
   WHERE "id" = $1;
   `;
   pool
-    .query(completedID, sqlUpdate)
+    .query(sqlUpdate, [completedID])
     .then((result) => {
       console.log('task updated');
       res.send(200);
