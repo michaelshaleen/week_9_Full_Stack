@@ -8,6 +8,13 @@ const pool = new pg.Pool({
   port: 5432,
 });
 
+///
+///
+///
+///
+///
+///
+const tasksList = [];
 router.get('/', (req, res) => {
   pool
     .query('SELECT * FROM "tasks"') //sql command is run
@@ -21,4 +28,6 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/');
+router.post();
+
+module.exports;

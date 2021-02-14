@@ -13,7 +13,7 @@ function getTasks() {
 
   $.ajax({
     type: 'GET',
-    url: '/tasks/getTasks',
+    url: '/tasks',
   }).then(function (response) {
     console.log('get response', response);
     for (let i = 0; i < response.length; i++) {
