@@ -76,15 +76,16 @@ router.delete('/tasks/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  console.log('req', req.body.id.task);
   let completedID = req.params.id;
-  console.log('completedID', completedID);
+  console.log('completedID', completedID.task, completedID.due_date);
   let sqlUpdate = `
   UPDATE "tasks"
   SET "complete" = TRUE
   WHERE "id" = $1;
   `;
   pool
-    .query([completedID], sqlUpdate)
+    .query(completedID, sqlUpdate)
     .then((result) => {
       console.log('task updated');
       res.send(200);

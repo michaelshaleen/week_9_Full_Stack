@@ -58,7 +58,7 @@ function getTasks() {
       <td>
       <button id="deleteBtn" data-id="${response[i].id}">Delete Button</button>
       </td><td>
-      <button id="completeBtn" data-id="${response[i].id}">>Completed!</button>
+      <button id="completeBtn" data-id="${response[i].id}">Completed!</button>
       </td>
     </tr>
       `);
