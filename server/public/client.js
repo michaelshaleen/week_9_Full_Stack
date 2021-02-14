@@ -72,13 +72,19 @@ function clearInputs() {
 }
 
 function deleteTask(taskID) {
-  // console.log('deleteTask');
+  console.log('deleteTask');
   // let deleteTarget = $(this).parent().parent();
-  // deleteTarget.remove();
+  //deleteTarget.remove();
   $.ajax({
-    type: 'DELETE',
-    url: `/DELETE/${taskID}`,
-  }).then(function (response) {});
+    method: 'DELETE',
+    url: `/DELETE/tasks/${taskID}`,
+  })
+    .then(function (response) {
+      addTask();
+    })
+    .catch(function (error) {
+      console.log('error in delete ajax');
+    });
 
   return;
 } //needs to coordinate with db
