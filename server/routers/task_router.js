@@ -27,9 +27,9 @@ router.post('/', function (req, res) {
   console.log('req.body', req.body);
   let queryString = `
         INSERT INTO "tasks"
-            ("name", "due_date", "complete")
+            ("name", "due_date")
         VALUES
-            ($1, $2, $3); 
+            ($1, $2); 
     `;
   // where are placeholders getting plugged in
   let queryArgs = [
@@ -57,8 +57,9 @@ router.post('/', function (req, res) {
 ////////////////////////////////
 
 router.delete('/tasks/:id', (req, res) => {
+  console.log(req.params.id); // object object
   let reqId = req.params.id;
-  console.log('delete request id', reqId);
+  console.log('delete request id', reqId.task);
   let sqlText = `DELETE FROM "tasks" WHERE "id"=$1;`;
 
   pool
@@ -74,6 +75,8 @@ router.delete('/tasks/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 
 router.put('/:id', (req, res) => {
   console.log('req', req.body.id.task);

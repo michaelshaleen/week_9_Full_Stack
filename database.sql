@@ -5,7 +5,7 @@ CREATE TABLE "tasks" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR(2048),
 	"due_date" DATE
-  "complete" BOOLEAN DEFAULT FALSE
+  <!--"complete" BOOLEAN DEFAULT FALSE
 
 	);
 
