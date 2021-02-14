@@ -6,23 +6,24 @@ function onReady() {
   console.log('onReady');
   getTasks();
   addTask();
-  // $('#addTaskBtn').on('click', addTask);
-  // $('#addTaskBtn').on('click', getTasks);
+  $('#addTaskBtn').on('click', addTask);
+  $('#addTaskBtn').on('click', getTasks);
 }
 
 ////////////////////////////
+///////////////////////////
 function addTask(event) {
   console.log('in addTasks');
-  //$(document).on('click', '#deleteBtn', deleteTask);
-  //$(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
+  $(document).on('click', '#deleteBtn', deleteTask);
+  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
   event.preventDefault();
   console.log('in addTask'); // test
   let newTask = {
     task: $('#taskInput').val(),
-    dueDate: $('#dateInput').val(),
+    due_date: $('#dateInput').val(),
   };
   console.log('newTask name', newTask.task);
-  console.log('newTask dueDate', newTask.dueDate);
+  console.log('newTask due_date', newTask.due - date);
 
   $.ajax({
     url: '/tasks',
@@ -36,7 +37,8 @@ function addTask(event) {
       console.log(error);
     });
 }
-//////////////////
+///////////////////////////////////////
+///////////////////////////////////////
 function getTasks() {
   console.log('In getTasks');
 
@@ -62,23 +64,23 @@ function getTasks() {
       `);
     }
   });
-  //clearInputs();
+  clearInputs();
 }
-// function clearInputs() {
-//   $('#taskInput').val('');
-//   $('#dateInput').val('');
-// }
+function clearInputs() {
+  $('#taskInput').val('');
+  $('#dateInput').val('');
+}
 
-// function deleteTask() {
-//   console.log('deleteTask');
-//   let deleteTarget = $(this).parent().parent();
-//   deleteTarget.remove();
-//   return;
-// } //needs to coordinate with db
+function deleteTask() {
+  console.log('deleteTask');
+  let deleteTarget = $(this).parent().parent();
+  deleteTarget.remove();
+  return;
+} //needs to coordinate with db
 
-// function completeTask() {
-//   console.log('complete task');
-//   let completeTarget = $(this).parent().parent();
-//   completeTarget.css('background-color', 'green');
-// }
-// //needs to coordinate with db
+function completeTask() {
+  console.log('complete task');
+  let completeTarget = $(this).parent().parent();
+  completeTarget.css('background-color', 'green');
+}
+//needs to coordinate with db

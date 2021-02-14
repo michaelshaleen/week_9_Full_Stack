@@ -29,12 +29,10 @@ SERVER
 
 [x] we can console.log our db now GET dbrows to client and append
 
-[] store inputs in db
-[] get to server
-[] server to db
-[x]pull something from db to show connection works
-[] db appends to DOM
-[] ensure db names are correct
+[] get inputs to db
+[] posts from ajax to server
+-[] to router
+-[]insert to db
 
 DATABASE
 [x] set up postico

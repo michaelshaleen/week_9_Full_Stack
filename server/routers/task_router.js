@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
-
-const pool = new pg.Pool({
-  database: 'weekend-to-do-app',
-  host: 'localhost',
-  port: 5432,
-});
+//const pg = require('pg');
+const pool = require('../modules/pool');
 
 //////////////////
 
@@ -29,31 +24,30 @@ router.get('/', (req, res) => {
 router.post('/', function (req, res) {
   console.log('req.body', req.body);
   let queryString = `
-        INSERT INTO "songs"
+        INSERT INTO "tasks"
             ("name", "due_date")
         VALUES
-            -- Use placeholder to prevent SQL Injection!
             ($1, $2);
     `;
 
   let queryArgs = [
-    req.body.task, // $1
-    req.body.dueDate, // $2
+    req.body.task_to_add.task, // $1
+    req.body.task_to_add.due_date, // $2
   ];
 
-  console.log('query sting', queryString);
+  //console.log('query sting', queryString);
   console.log('query args', queryArgs);
 
-  pool.query(queryString, queryArgs);
-  console.log('app.post');
-  console
-    .log('req.body', req.body)
+  //console.log('app.post');
+  pool
+    .query(queryString, queryArgs)
     .then(function (dbRes) {
       res.send(req.body);
-      res.sendStatus(200);
     })
     .catch(function (error) {
       console.log(error);
+
+      res.sendStatus(500);
     });
 });
 module.exports = router;
