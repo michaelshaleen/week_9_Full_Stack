@@ -80,15 +80,15 @@ function clearInputs() {
 
 let deleteTarget = [];
 function deleteTask() {
-  console.log('deleteTask');
   deleteTarget = $(this).data('id');
-  deleteTarget.parent().remove();
+  console.log('deleteTask', deleteTarget);
   $.ajax({
     url: `/DELETE/tasks/${deleteTarget}`,
     type: 'DELETE',
   })
     .then(function (response) {
       console.log('ajax delete');
+      //run function to re-append
     })
     .catch(function (error) {
       console.log('error in delete ajax');
