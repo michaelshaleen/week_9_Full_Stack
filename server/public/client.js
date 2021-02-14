@@ -56,7 +56,7 @@ function getTasks() {
       ${response[i].due_date}
       </td>
       <td>
-      <button id="deleteBtn">Delete Button</button>
+      <button id="deleteBtn" data-id="${response[i].id}">Delete Button</button>
       </td><td>
       <button id="completeBtn">Completed!</button>
       </td>
@@ -70,7 +70,13 @@ function clearInputs() {
   $('#taskInput').val('');
   $('#dateInput').val('');
 }
+//////////////////////////////
+/////////////////////////////
 
+// function badBanana() {
+//   deleteSong($(this).data('id'));
+//   //call AJAX to DELETE song:
+// }
 function deleteTask(taskID) {
   console.log('deleteTask');
   // let deleteTarget = $(this).parent().parent();
@@ -90,7 +96,11 @@ function deleteTask(taskID) {
 } //needs to coordinate with db
 // ajax?
 
-function completeTask() {
+function completeTask(taskID) {
+  $.ajax({
+    method: 'PUT',
+    url: `/complete/${taskID}`,
+  });
   console.log('complete task');
   let completeTarget = $(this).parent().parent();
   completeTarget.css('background-color', 'green');

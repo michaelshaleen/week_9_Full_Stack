@@ -24,3 +24,5 @@ app.listen(5000, function () {
 app.use('/tasks', taskRouter);
 
 app.use('/DELETE', taskRouter);
+
+app.use('/complete', taskRouter);

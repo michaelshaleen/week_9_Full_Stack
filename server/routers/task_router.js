@@ -27,9 +27,9 @@ router.post('/', function (req, res) {
   console.log('req.body', req.body);
   let queryString = `
         INSERT INTO "tasks"
-            ("name", "due_date")
+            ("name", "due_date", "complete")
         VALUES
-            ($1, $2); 
+            ($1, $2, $3); 
     `;
   // where are placeholders getting plugged in
   let queryArgs = [
@@ -75,4 +75,9 @@ router.delete('/tasks/:id', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  let completedID = req.params.id;
+  console.log('completedID', completedID);
+  let sqlInput = 'UPDATE "tasks"';
+});
 module.exports = router;
