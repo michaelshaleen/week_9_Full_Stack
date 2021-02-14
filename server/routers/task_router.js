@@ -57,16 +57,16 @@ router.post('/', function (req, res) {
 ////////////////////////////////
 
 router.delete('/', (req, res) => {
-  pool
-    .query(
-      `
-      DELETE FROM "tasks"
-      WHERE "name"= 'tacos'`
-    )
-    .then(function () {
-      //.then is a callback
-      console.log('deleted');
+  let reqId = req.params.id;
+  console.log('delete request id', reqId);
 
+  let sqlText = 'DELETE FROM "tasks" WHERE "id"=$1;';
+
+  pool
+    .query(sqlText, [reqId])
+    .then((result) => {
+      //.then is a callback
+      console.log('task deleted');
       res.send(200);
       //results of query sql command
     })

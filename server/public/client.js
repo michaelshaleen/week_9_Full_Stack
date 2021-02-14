@@ -71,14 +71,14 @@ function clearInputs() {
   $('#dateInput').val('');
 }
 
-function deleteTask() {
-  console.log('deleteTask');
-  let deleteTarget = $(this).parent().parent();
-  deleteTarget.remove();
+function deleteTask(taskID) {
+  // console.log('deleteTask');
+  // let deleteTarget = $(this).parent().parent();
+  // deleteTarget.remove();
   $.ajax({
     type: 'DELETE',
-    url: '/DELETE',
-  });
+    url: `/DELETE/${taskID}`,
+  }).then(function (response) {});
 
   return;
 } //needs to coordinate with db
