@@ -22,3 +22,5 @@ app.listen(5000, function () {
 //     console.log(error);
 //   });
 app.use('/tasks', taskRouter);
+
+app.use('/DELETE', taskRouter);

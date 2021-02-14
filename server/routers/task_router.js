@@ -37,7 +37,7 @@ router.post('/', function (req, res) {
     req.body.task_to_add.due_date, // $2
   ];
 
-  //console.log('query sting', queryString);
+  console.log('query sting', queryString);
   console.log('query args', queryArgs);
 
   //console.log('app.post');
@@ -52,4 +52,28 @@ router.post('/', function (req, res) {
       res.sendStatus(500);
     });
 });
+
+////////////////////////////////
+////////////////////////////////
+
+router.delete('/', (req, res) => {
+  pool
+    .query(
+      `
+      DELETE FROM "tasks"
+      WHERE "name"= 'tacos'`
+    )
+    .then(function () {
+      //.then is a callback
+      console.log('deleted');
+
+      res.send(200);
+      //results of query sql command
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

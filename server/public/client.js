@@ -77,7 +77,7 @@ function deleteTask() {
   deleteTarget.remove();
   $.ajax({
     type: 'DELETE',
-    url: '/tasks',
+    url: '/DELETE',
   });
 
   return;
