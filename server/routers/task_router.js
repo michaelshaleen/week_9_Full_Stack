@@ -59,7 +59,7 @@ router.post('/', function (req, res) {
 router.delete('/tasks/:id', (req, res) => {
   let reqId = req.params.id;
   console.log('delete request id', reqId);
-  let sqlText = 'DELETE FROM "tasks" WHERE "id"=$1;';
+  let sqlText = `DELETE FROM "tasks" WHERE "id"=$1;`;
 
   pool
     .query(sqlText, [reqId])
@@ -78,6 +78,20 @@ router.delete('/tasks/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   let completedID = req.params.id;
   console.log('completedID', completedID);
-  let sqlInput = 'UPDATE "tasks"';
+  let sqlUpdate = `
+  UPDATE "tasks"
+  SET "complete" = TRUE
+  WHERE "id" = $1;
+  `;
+  pool
+    .query(completedID, sqlUpdate)
+    .then((result) => {
+      console.log('task updated');
+      res.send(200);
+    })
+    .catch(function (error) {
+      console.log('err router complete');
+      res.sendStatus(500);
+    });
 });
 module.exports = router;
