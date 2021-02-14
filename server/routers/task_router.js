@@ -17,6 +17,8 @@ router.get('/', (req, res) => {
     .then(function (dbRes) {
       //.then is a callback
       console.log('dbRes.rows', dbRes.rows);
+      console.log('req.body', req.body);
+
       res.send(dbRes.rows); //results of query sql command
     })
     .catch(function (error) {
@@ -25,10 +27,11 @@ router.get('/', (req, res) => {
 });
 /////////////////////////////////////
 router.post('/', function (req, res) {
+  console.log('req.body', req.body);
   pool.query(`
   INSERT INTO "tasks"("name", "due_date")
   VALUES 
-    ('Start To Do List', '01-01-2022'),
+    ('${req.body.task}', '${req.body.dueDate}'),
     ('Dishes', '01-01-2022');
   `);
   console.log('app.post');
