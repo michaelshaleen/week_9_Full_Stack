@@ -27,9 +27,9 @@ router.post('/', function (req, res) {
         INSERT INTO "tasks"
             ("name", "due_date")
         VALUES
-            ($1, $2);
+            ($1, $2); 
     `;
-
+  // where are placeholders getting plugged in
   let queryArgs = [
     req.body.task_to_add.task, // $1
     req.body.task_to_add.due_date, // $2
@@ -42,7 +42,7 @@ router.post('/', function (req, res) {
   pool
     .query(queryString, queryArgs)
     .then(function (dbRes) {
-      res.send(req.body);
+      res.send(201);
     })
     .catch(function (error) {
       console.log(error);

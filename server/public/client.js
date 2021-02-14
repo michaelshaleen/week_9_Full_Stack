@@ -16,14 +16,14 @@ function addTask(event) {
   console.log('in addTasks');
   $(document).on('click', '#deleteBtn', deleteTask);
   $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
-  event.preventDefault();
+  //event.preventDefault();
   console.log('in addTask'); // test
   let newTask = {
     task: $('#taskInput').val(),
     due_date: $('#dateInput').val(),
   };
   console.log('newTask name', newTask.task);
-  console.log('newTask due_date', newTask.due - date);
+  console.log('newTask due_date', newTask.due_date);
 
   $.ajax({
     url: '/tasks',
