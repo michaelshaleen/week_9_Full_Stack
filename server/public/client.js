@@ -13,14 +13,12 @@ function addTask(event) {
   console.log('in addTasks');
   $(document).on('click', '#deleteBtn', deleteTask);
   $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
-
   event.preventDefault();
   //console.log('in addTask'); // test
   let newTask = {
     task: $('#taskInput').val(),
     dueDate: $('#dateInput').val(),
   };
-
   console.log('newTask name', newTask.task);
   console.log('newTask dueDate', newTask.dueDate);
 
@@ -35,9 +33,9 @@ function addTask(event) {
       console.log('ajax post response', response);
       $('#taskList').append(`
     <tr>Ajax Post
-      <td>Task:
-      ${newTask.task}--
-      Due Date
+      <td><u>Task:</u>
+      ${newTask.task}
+      <u>Due Date:</u>
       ${newTask.dueDate}
       </td>
       <td>
@@ -52,7 +50,7 @@ function addTask(event) {
     //ran automatically
   );
 }
-
+//////////////////
 function getTasks() {
   console.log('In getTasks');
 
@@ -64,9 +62,9 @@ function getTasks() {
     for (let i = 0; i < dbRes.length; i++) {
       $('#taskList').append(`
     <tr>
-      <td>Task get:
+      <td>Task:
       ${dbRes[i].name}--
-      Due Date get
+      Due Date:
       ${dbRes[i].dueDate}
       </td>
       <td>
@@ -77,6 +75,7 @@ function getTasks() {
       `);
     }
   });
+  clearInputs();
 }
 function clearInputs() {
   $('#taskInput').val('');

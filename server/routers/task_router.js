@@ -25,6 +25,12 @@ router.get('/', (req, res) => {
 });
 /////////////////////////////////////
 router.post('/', function (req, res) {
+  pool.query(`
+  INSERT INTO "tasks"("name", "due_date")
+  VALUES 
+    ('Start To Do List', '01-01-2022'),
+    ('Dishes', '01-01-2022');
+  `);
   console.log('app.post');
   console.log('req.body', req.body);
   res.send(req.body);

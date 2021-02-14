@@ -27,12 +27,13 @@ SERVER
 [x] pool.js has connection data for DB
 [x]set up sql and pg to talk to db
 
-[] we can console.log our db now GET dbrows to client and append
+[x] we can console.log our db now GET dbrows to client and append
 
 [] store inputs in db
 [] get to server
 [] server to db
-[]pull something from db to show connection works
+[x]pull something from db to show connection works
+[] db appends to DOM
 [] ensure db names are correct
 
 DATABASE
