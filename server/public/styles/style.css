@@ -1,7 +1,14 @@
-h2 {
-  background-color: blue;
+body {
+  background-color: rgb(107, 163, 157);
 }
 
-p {
-  color: aqua;
+h2 {
+  color: rgb(30, 80, 49);
+  font-family: cursive;
+  font-size: x-large;
+}
+
+#taskList {
+  color: rgb(50, 93, 88);
+  background-color: rgb(160, 164, 165);
 }

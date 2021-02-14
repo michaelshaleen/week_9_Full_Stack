@@ -81,17 +81,21 @@ router.delete('/tasks/:id', (req, res) => {
 ////////////////////////////////////////////////////////
 
 router.put('/complete/:id', (req, res) => {
+  console.log(req.body);
   let completedID = req.params.id;
   console.log('completedID', completedID);
 
-  let reqId = req.params.id;
-  console.log('delete request id', reqId);
+  let truth = req.body.complete;
+  let sqlUpdate = '';
 
-  let sqlUpdate = `
-  UPDATE "tasks"
-  SET "complete" = TRUE
-  WHERE "id" = $1;
-  `;
+  if (complete === 'true') {
+    sqlUpdate = `UPDATE "tasks" SET "complete" = true WHERE "id" = $1`;
+  } else if (complete === 'false') {
+    sqlUpdate = `UPDATE "tasks" SET "complete" = false WHERE "id" = $1`;
+  } else {
+    res.sendStatus();
+  }
+
   pool
     .query(sqlUpdate, [completedID])
     .then((result) => {

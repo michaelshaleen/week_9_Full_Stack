@@ -15,6 +15,7 @@ function onReady() {
 function addTask(event) {
   console.log('in addTasks');
   $(document).on('click', '#deleteBtn', deleteTask);
+  $(document).on('click', '#completeBtn', greenTask);
   $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
   //event.preventDefault();
   console.log('in addTask'); // test
@@ -51,7 +52,7 @@ function getTasks() {
       $('#taskList').append(`
     <tr>
       <td>Task:
-      ${response[i].name}--
+      ${response[i].name}
       Due Date:
       ${response[i].due_date}
       </td>
@@ -111,12 +112,15 @@ function completeTask() {
       $('#taskList').empty();
       addTask();
       getTasks();
-      completeTarget.css('background-color', 'green');
       console.log('ajax put complete');
     })
     .catch(function (error) {
       console.log('error in complete client');
     });
-  //let completeTarget = $(this).parent().parent();
 }
-//needs to coordinate with db
+//maybe drop down of completed or not?
+function greenTask() {
+  console.log('green Task');
+  let completeTarget = $(this).parent().parent();
+  completeTarget.css('background-color', 'green');
+}
