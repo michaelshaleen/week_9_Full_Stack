@@ -14,10 +14,12 @@ router.get('/', (req, res) => {
       console.log('dbRes.rows', dbRes.rows);
       console.log('req.body', req.body);
 
-      res.send(dbRes.rows); //results of query sql command
+      res.send(dbRes.rows);
+      //results of query sql command
     })
     .catch(function (error) {
       console.log(error);
+      res.sendStatus(500);
     });
 });
 /////////////////////////////////////
