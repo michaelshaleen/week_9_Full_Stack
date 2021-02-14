@@ -82,7 +82,7 @@ function deleteTask(taskID) {
   // let deleteTarget = $(this).parent().parent();
   //deleteTarget.remove();
   $.ajax({
-    method: 'DELETE',
+    type: 'DELETE',
     url: `/DELETE/tasks/${taskID}`,
   })
     .then(function (response) {

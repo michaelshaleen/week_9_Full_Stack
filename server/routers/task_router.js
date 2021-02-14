@@ -57,10 +57,10 @@ router.post('/', function (req, res) {
 ////////////////////////////////
 
 router.delete('/tasks/:id', (req, res) => {
-  console.log(req.params.id); // object object
+  console.log(req.params.id); // object object,,,WHERE "id"=$1;
   let reqId = req.params.id;
-  console.log('delete request id', reqId.task);
-  let sqlText = `DELETE FROM "tasks" WHERE "id"=$1;`;
+  console.log('delete request id', reqId[i].task);
+  let sqlText = `DELETE FROM "tasks" `;
 
   pool
     .query(sqlText, [reqId])
