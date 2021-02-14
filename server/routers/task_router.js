@@ -84,7 +84,7 @@ router.put('/:id', (req, res) => {
   WHERE "id" = $1;
   `;
   pool
-    .query(completedID, sqlUpdate)
+    .query([completedID], sqlUpdate)
     .then((result) => {
       console.log('task updated');
       res.send(200);
