@@ -3,10 +3,12 @@ const router = express.Router();
 //const pg = require('pg');
 const pool = require('../modules/pool');
 
-//////////////////
+/////////////////////////////////////
+/////////////////////////////////////
 //we want to select most recent and append
 const tasksList = [];
 router.get('/', (req, res) => {
+  // request before you can have a response
   pool
     .query('SELECT * FROM "tasks"') //sql command is run
     .then(function (dbRes) {
@@ -22,6 +24,7 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     });
 });
+/////////////////////////////////////
 /////////////////////////////////////
 router.post('/', function (req, res) {
   console.log('req.body', req.body);
@@ -80,7 +83,7 @@ router.delete('/tasks/:id', (req, res) => {
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-router.put('/complete/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   console.log(req.body);
   let completedID = req.params.id;
   console.log('completedID', completedID);
@@ -106,4 +109,6 @@ router.put('/complete/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+////////////////////////////
 module.exports = router;

@@ -12,3 +12,7 @@ h2 {
   color: rgba(151, 25, 25, 0.876);
   background-color: rgb(160, 164, 165);
 }
+
+.complete {
+  background-color: green;
+}

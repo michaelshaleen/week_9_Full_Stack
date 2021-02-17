@@ -4,15 +4,15 @@ $(document).ready(onReady);
 
 function onReady() {
   console.log('onReady');
-  getTasks();
   addTask();
+  getTasks();
   $('#addTaskBtn').on('click', addTask);
   $('#addTaskBtn').on('click', getTasks);
 }
 
 ////////////////////////////
 ///////////////////////////
-function addTask(event) {
+function addTask() {
   console.log('in addTasks');
   $(document).on('click', '#deleteBtn', deleteTask);
   $(document).on('click', '#completeBtn', greenTask);
@@ -33,7 +33,9 @@ function addTask(event) {
       task_to_add: newTask,
     },
   })
-    .then(console.log('ajax post'))
+    .then(
+    getTasks()
+    )   //not sure if .then should be .then(getTasks() => )
     .catch(function (error) {
       console.log(error);
     });
@@ -41,15 +43,18 @@ function addTask(event) {
 ///////////////////////////////////////
 ///////////////////////////////////////
 function getTasks() {
-  //console.log('In getTasks');
 
   $.ajax({
     type: 'GET',
     url: '/tasks',
-  }).then(function (response) {
-    console.log('get response', response);
-    for (let i = 0; i < response.length; i++) {
-      $('#taskList').append(`
+  })
+    .then(function (response) {
+      console.log('get response', response);
+      for (let i = 0; i < response.length; i++) {
+        if (response[i].complete) {
+        }
+        $('#taskList').append(`
+        
     <tr>
       <td>Task:
       ${response[i].name}
@@ -63,8 +68,11 @@ function getTasks() {
       </td>
     </tr>
       `);
-    }
-  });
+      }
+    })
+    .catch(function (error) {
+      console.log('error');
+    });
   clearInputs();
 }
 function clearInputs() {
@@ -88,6 +96,7 @@ function deleteTask() {
     type: 'DELETE',
   })
     .then(function (response) {
+      console.log(response, 'ajax delete response');
       $('#taskList').empty();
       addTask();
       getTasks();
