@@ -47,7 +47,7 @@ router.post('/', function (req, res) {
   pool
     .query(queryString, queryArgs)
     .then(function (dbRes) {
-      completeTarget;
+      // completeTarget;
       res.send(201);
     })
     .catch(function (error) {

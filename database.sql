@@ -6,7 +6,12 @@ CREATE TABLE "tasks" (
 	"name" VARCHAR(2048),
 	"due_date" DATE
   <!--"complete" BOOLEAN DEFAULT FALSE
-
+adfjldsaf
+dafda
+sf
+sdaf
+adfjldsafsaf
+as
 	);
 
 

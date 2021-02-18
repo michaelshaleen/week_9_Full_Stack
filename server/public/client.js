@@ -4,19 +4,24 @@ $(document).ready(onReady);
 
 function onReady() {
   console.log('onReady');
-  addTask();
+  //addTask();
   getTasks();
+  
+  // add new task handler
   $('#addTaskBtn').on('click', addTask);
-  $('#addTaskBtn').on('click', getTasks);
+
+  $(document).on('click', '#deleteBtn', deleteTask);
+  $(document).on('click', '#completeBtn', greenTask);
+  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
+
+  // $('#addTaskBtn').on('click', getTasks);
 }
 
 ////////////////////////////
 ///////////////////////////
 function addTask() {
   console.log('in addTasks');
-  $(document).on('click', '#deleteBtn', deleteTask);
-  $(document).on('click', '#completeBtn', greenTask);
-  $(document).on('click', '#completeBtn', completeTask); // doc because is not loaded when page starts
+  
   //event.preventDefault();
   console.log('in addTask'); // test
   let newTask = {
@@ -33,9 +38,10 @@ function addTask() {
       task_to_add: newTask,
     },
   })
-    .then(
-    getTasks()
-    )   //not sure if .then should be .then(getTasks() => )
+    .then( function(response) {
+      // post is complete, let's get the data again
+      getTasks();
+    })   //not sure if .then should be .then(getTasks() => )
     .catch(function (error) {
       console.log(error);
     });
@@ -50,23 +56,26 @@ function getTasks() {
   })
     .then(function (response) {
       console.log('get response', response);
+
+      $('#taskList').empty();
+
       for (let i = 0; i < response.length; i++) {
         if (response[i].complete) {
         }
         $('#taskList').append(`
         
-    <tr>
-      <td>Task:
-      ${response[i].name}
-      Due Date:
-      ${response[i].due_date}
-      </td>
-      <td>
-      <button id="deleteBtn" data-id="${response[i].id}">Delete Button</button>
-      </td><td>
-      <button id="completeBtn" data-id="${response[i].id}">Completed!</button>
-      </td>
-    </tr>
+        <tr>
+          <td>Task:
+          ${response[i].name}
+          Due Date:
+          ${response[i].due_date}
+          </td>
+          <td>
+          <button id="deleteBtn" data-id="${response[i].id}">Delete Button</button>
+          </td><td>
+          <button id="completeBtn" data-id="${response[i].id}">Completed!</button>
+          </td>
+        </tr>
       `);
       }
     })
@@ -109,7 +118,10 @@ function deleteTask() {
   return;
 } //needs to coordinate with db
 
-let completeTarget = [];
+// let completeTarget = [];
+
+
+
 function completeTask() {
   completeTarget = $(this).data('id');
   console.log(completeTarget, 'complete Target');
